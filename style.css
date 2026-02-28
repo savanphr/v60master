@@ -1,0 +1,115 @@
+/* --- BASE & TYPOGRAPHIE --- */
+@import url("https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css");
+
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+  -webkit-user-select: none; /* Évite la sélection de texte accidentelle sur iPhone */
+}
+
+/* --- THÈMES (CLAIR / SOMBRE) --- */
+body.light {
+  background-color: #f5f5f4;
+  color: #1c1917;
+}
+body.dark {
+  background-color: #1c1917;
+  color: #f5f5f4;
+}
+
+.card {
+  transition: background-color 0.3s;
+}
+.light .card {
+  background-color: #ffffff;
+}
+.dark .card {
+  background-color: #292524;
+}
+
+/* --- CONTRASTE DES INPUTS (PARAMÈTRES) --- */
+.light input {
+  background-color: #f3f4f6 !important;
+  color: #1c1917 !important;
+  border: 1px solid #e5e7eb;
+}
+
+.dark input {
+  background-color: #44403c !important;
+  color: #ffffff !important;
+  border: 1px solid #57534e;
+}
+
+/* --- ÉTATS DES ÉTAPES & BOUTONS --- */
+.step-active {
+  border-color: #fbbf24 !important;
+  background-color: rgba(251, 191, 36, 0.1) !important;
+  opacity: 1 !important;
+}
+
+/* Orange Vif (Actif) */
+.btn-vibrant {
+  background-color: #d97706 !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 6px -1px rgba(217, 119, 6, 0.3);
+}
+
+/* Orange Pâle / Grisé (Inactif) */
+.btn-inactive {
+  background-color: #44403c !important;
+  opacity: 0.3 !important;
+  color: #a8a29e !important;
+}
+
+/* --- ANIMATION DE VAPEUR --- */
+@keyframes steamRaise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+.steam-line {
+  animation: steamRaise 2s infinite ease-in-out;
+  opacity: 0;
+}
+
+.steam-2 {
+  animation-delay: 0.5s;
+}
+.steam-3 {
+  animation-delay: 1s;
+}
+
+/* Déclencheur via JS */
+.animate-steam .steam-line {
+  opacity: 0.4;
+}
+
+/* --- SCROLLBAR DISCRÈTE (GUIDE) --- */
+.max-h-\[70vh\]::-webkit-scrollbar {
+  width: 4px;
+}
+.max-h-\[70vh\]::-webkit-scrollbar-thumb {
+  background: #d97706;
+  border-radius: 10px;
+}
+
+/* --- FIXES IPHONE --- */
+input[type="number"] {
+  font-size: 16px; /* Évite le zoom automatique de Safari sur iPhone */
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>V60 Master</title>
+	<link rel="stylesheet" href="style.css" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="V60 Master">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/240/espresso-cup.png">
+</head>
+
+<body>
+	<div class="max-w-md mx-auto p-6 pb-24 text-center">
+	  <div class="flex justify-between items-center mb-6">
+	    <button onclick="openModal('guide-modal')" class="p-3 card rounded-full shadow-sm active:scale-90 transition-transform">
+	      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-600">
+	        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+	        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+	      </svg>
+	    </button>
+	    <h1 class="text-2xl font-black tracking-tighter uppercase">V60 Master</h1>
+	    <button onclick="openModal('settings-modal')" class="p-3 card rounded-full shadow-sm active:scale-90 transition-transform">
+	      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-amber-600">
+	        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+	        <circle cx="12" cy="12" r="3"></circle>
+	      </svg>
+	    </button>
+	  </div>
+
+	  <div class="flex justify-center mb-2 relative">
+	    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="relative z-10">
+	      <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+	      <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
+	      <line x1="6" y1="2" x2="6" y2="4" />
+	      <line x1="10" y1="2" x2="10" y2="4" />
+	      <line x1="14" y1="2" x2="14" y2="4" />
+	    </svg>
+	    <svg id="steam-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="absolute -top-6 opacity-0 transition-opacity duration-300">
+	      <path d="M8 10c.5-1.5 1.5-2 2-2s1.5.5 2 2" class="steam-line steam-1" />
+	      <path d="M11 10c.5-1.5 1.5-2 2-2s1.5.5 2 2" class="steam-line steam-2" />
+	      <path d="M14 10c.5-1.5 1.5-2 2-2s1.5.5 2 2" class="steam-line steam-3" />
+	    </svg>
+	  </div>
+
+	  <div id="main-timer" class="text-7xl font-mono font-bold mb-10 text-amber-600">00:00</div>
+
+	  <div id="steps-container" class="space-y-4 text-left">
+	    <div id="step-1" class="card p-5 rounded-3xl border-2 border-transparent transition-all step-active">
+	      <div class="flex justify-between items-center mb-3">
+	        <h2 class="font-bold">1. Bloom</h2>
+	        <span id="badge-1" class="text-xs opacity-50 font-bold">30s</span>
+	      </div>
+	      <button id="btn-1" onclick="startPhase(1)" class="w-full btn-vibrant text-white py-4 rounded-2xl font-black uppercase text-xs">Démarrer</button>
+	    </div>
+	    <div id="step-2" class="card p-5 rounded-3xl border-2 border-transparent opacity-40 transition-all">
+	      <div class="flex justify-between items-center mb-3">
+	        <h2 class="font-bold">2. Versage 1</h2>
+	        <span id="badge-2" class="text-xs opacity-50 font-bold">30s</span>
+	      </div>
+	      <button id="btn-2" onclick="startPhase(2)" disabled class="w-full btn-inactive text-white py-4 rounded-2xl font-black uppercase text-xs">Démarrer</button>
+	    </div>
+	    <div id="step-3" class="card p-5 rounded-3xl border-2 border-transparent opacity-40 transition-all">
+	      <div class="flex justify-between items-center mb-3">
+	        <h2 class="font-bold">3. Versage 2</h2>
+	        <span id="badge-3" class="text-xs opacity-50 font-bold">60s</span>
+	      </div>
+	      <button id="btn-3" onclick="startPhase(3)" disabled class="w-full btn-inactive text-white py-4 rounded-2xl font-black uppercase text-xs">Démarrer</button>
+	    </div>
+	    <div id="step-4" class="card p-5 rounded-3xl border-2 border-transparent opacity-40 transition-all">
+	      <div class="flex justify-between items-center mb-3">
+	        <h2 class="font-bold">4. Écoulement</h2>
+	        <span class="text-xs opacity-40 uppercase font-bold">Libre</span>
+	      </div>
+	      <button id="btn-4" onclick="startPhase(4)" disabled class="w-full btn-inactive text-white py-4 rounded-2xl font-black uppercase text-xs">Chrono Final</button>
+	    </div>
+	  </div>
+
+	  <button onclick="resetApp()" class="w-full mt-12 text-stone-500 text-xs tracking-[0.3em] uppercase font-black py-4 active:text-amber-600 transition-colors">Réinitialiser l'App</button>
+	</div>
+
+	<div id="guide-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 text-left">
+	  <div class="card w-full max-w-lg rounded-3xl p-6 shadow-2xl transition-colors">
+	    <div class="flex justify-between items-center mb-4">
+	      <h2 class="text-xl font-black uppercase tracking-tight">Guide V60</h2>
+	      <button onclick="closeModal('guide-modal')" class="text-amber-600 font-bold">Fermer</button>
+	    </div>
+	    <div class="max-h-[70vh] overflow-y-auto pr-2 space-y-6 text-sm leading-relaxed">
+	      <section>
+	        <h3 class="font-bold text-amber-600 text-base mb-1">1. L'objectif</h3>
+	        <p>Tirer le meilleur de son café en jouant sur ratio, mouture et technique de verse. La recette dépend du type de café et de ton goût final.</p>
+	      </section>
+	      <section>
+	        <h3 class="font-bold text-amber-600 text-base mb-1">2. Ratio café / eau</h3>
+	        <p>Démonstration : 19g café pour 300g eau (1:16).</p>
+	        <ul class="list-disc ml-4 mt-2">
+	          <li><strong>Light :</strong> 1:15 | <strong>Medium :</strong> 1:16 | <strong>Dark :</strong> 1:17+</li>
+	        </ul>
+	      </section>
+	      <section>
+	        <h3 class="font-bold text-amber-600 text-base mb-1">3. Mouture</h3>
+	        <p>Light Roast : Medium-fine (sel de table). Dark Roast : Légèrement plus grossière.</p>
+	      </section>
+	      <section>
+	        <h3 class="font-bold text-amber-600 text-base mb-1">4. Préparation</h3>
+	        <p>Plier le filtre, le placer dans la V60 et rincer à l'eau chaude. Jeter l'eau de rinçage avant de commencer.</p>
+	      </section>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="settings-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-6 text-left">
+	  <div class="card w-full max-w-xs rounded-3xl p-6 shadow-2xl transition-colors">
+	    <h2 class="text-xl font-bold mb-6">Réglages</h2>
+	    <div class="space-y-4">
+	      <div class="flex justify-between items-center bg-stone-100 dark:bg-stone-800 p-3 rounded-xl transition-colors">
+	        <span class="text-xs font-bold uppercase">Mode Sombre</span>
+	        <button onclick="toggleTheme()" id="theme-toggle" class="w-12 h-6 bg-stone-400 rounded-full relative transition-colors">
+	          <div id="toggle-dot" class="w-5 h-5 bg-white rounded-full absolute top-0.5 left-1 transition-all"></div>
+	        </button>
+	      </div>
+	      <div>
+	        <label class="block text-xs font-bold text-stone-500 uppercase mb-1">Bloom (sec)</label>
+	        <input type="number" id="input-dur-1" class="w-full p-3 rounded-xl border-none outline-amber-600 shadow-inner">
+	      </div>
+	      <div>
+	        <label class="block text-xs font-bold text-stone-500 uppercase mb-1">Versage 1 (sec)</label>
+	        <input type="number" id="input-dur-2" class="w-full p-3 rounded-xl border-none outline-amber-600 shadow-inner">
+	      </div>
+	      <div>
+	        <label class="block text-xs font-bold text-stone-500 uppercase mb-1">Versage 2 (sec)</label>
+	        <input type="number" id="input-dur-3" class="w-full p-3 rounded-xl border-none outline-amber-600 shadow-inner">
+	      </div>
+	      <button onclick="shareRecipe()" class="w-full flex items-center justify-center gap-2 bg-stone-100 dark:bg-stone-800 text-amber-600 p-3 rounded-xl font-bold text-xs uppercase transition-colors">
+	        Partager recette
+	      </button>
+	    </div>
+	    <button onclick="closeModal('settings-modal'); saveSettings();" style="background-color: #d97706 !important; color: #ffffff !important; opacity: 1 !important;" class="w-full mt-6 py-4 rounded-xl font-bold uppercase text-xs shadow-lg active:scale-95 transition-transform">
+	      Enregistrer les réglages
+	    </button>
+	  </div>
+	  <script src="script.js"></script>
+	</div>
+</body>
+</html>
